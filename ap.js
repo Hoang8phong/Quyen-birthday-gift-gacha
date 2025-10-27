@@ -30,6 +30,43 @@ const RATES = {
 
 const VIDEO_SRC = { r3: "/gachavideo/gacha3star.mp4", r4: "/gachavideo/gacha4star.mp4", r5: "/gachavideo/gacha5star.mp4" };
 
+// ===== Preload assets (video + images) =====
+const PRELOAD_ASSETS = [
+  VIDEO_SRC.r3, VIDEO_SRC.r4, VIDEO_SRC.r5,
+  ...ITEMS.map(i => i.image).filter(Boolean)
+];
+
+function preloadAssets() {
+  // Preload qua <link rel="preload">
+  PRELOAD_ASSETS.forEach(src => {
+    if (!src) return;
+    const l = document.createElement('link');
+    l.rel = 'preload';
+    l.as = src.endsWith('.mp4') ? 'video' : 'image';
+    if (src.endsWith('.mp4')) l.type = 'video/mp4';
+    l.href = src;
+    l.crossOrigin = 'anonymous';
+    document.head.appendChild(l);
+  });
+
+  // Warm cache ảnh
+  ITEMS.forEach(i => {
+    if (!i.image) return;
+    const img = new Image();
+    img.decoding = 'async';
+    img.src = i.image;
+  });
+
+  // Warm cache nhẹ cho video
+  [VIDEO_SRC.r3, VIDEO_SRC.r4, VIDEO_SRC.r5].forEach(v => {
+    if (!v) return;
+    const vEl = document.createElement('video');
+    vEl.preload = 'auto';
+    vEl.src = v;
+  });
+}
+
+
 let state = {
   pity5: 0,
   pity4: 0,
@@ -365,3 +402,5 @@ function init(){
 
 
 document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", preloadAssets);
+
