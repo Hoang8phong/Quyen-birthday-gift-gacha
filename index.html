@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Quyên's gift gacha Simulator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="/gachaimage/logo.png" />
+</head>
+<body class="dark">
+  <div class="aurora-wrap">
+    <div class="aurora-content">
+
+      <!-- Fullscreen overlay video -->
+      <div id="fsOverlay" class="fs-overlay">
+        <video id="fsVideo" playsinline></video>
+        <div class="fs-controls">
+          <button id="fsUnmuteBtn" class="btn">🔈</button>
+          <button id="fsSkipBtn" class="btn">Skip</button>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <div class="row mb16">
+          <h1 class="title" style="color: black;">Quyên's gift gacha Simulator (based on Wuthering Wave System)</h1>
+          <div class="row" style="gap:8px">
+            <div class="gembox">
+              <span id="gemBalance" style="color: black;">0</span>
+              <span class="muted" style="color: black;"> <img src="/gachaimage/gem.png" alt="">(~<span id="rollsLeft">0</span> rolls)</span>
+            </div>
+            <button id="resetBtn" title="Reset to fresh start">Reset</button>
+            <button id="themeBtn" title="Toggle theme">Light/Dark</button>
+          </div>
+        </div>
+
+        <div class="card mb16">
+          <h3 class="subttl">Results</h3>
+          <div id="resultsEmpty" class="muted">(RATEUP: HATSUNE MIKU)</div>
+          <div id="results" class="results-grid" style="display:none" aria-live="polite"></div>
+          
+        </div>
+
+        <div class="bottom-controls mb16">
+          <button id="pull1"><img src="/gachaimage/gem.png" alt=""> Pull 1 (160)</button>
+          <button id="pull10"><img src="/gachaimage/gem.png" alt=""> Pull 10 (1600)</button>
+          <div class="muted" style="color: black;">Total pulls: <strong id="totalPulls">0</strong></div>
+        </div>
+
+        <div class="grid-2 mb16">
+          <div class="card">
+            <h2>Rates</h2>
+            <ul id="ratesList"></ul>
+          </div>
+          <div class="card">
+            <h2>Current pity</h2>
+            <div class="grid-2" style="gap:12px">
+              <div>
+                <div class="muted">Pulls since last 5★</div>
+                <div id="pity5" class="bignum">0</div>
+              </div>
+              <div>
+                <div class="muted">Pulls since last 4★</div>
+                <div id="pity4" class="bignum">0</div>
+              </div>
+              <div style="grid-column:1 / span 2">
+                <div class="muted">Next-pull 5★ chance (with soft pity)</div>
+                <div id="nextP5" class="bignum2">0.00%</div>
+              </div>
+              <div style="grid-column:1 / span 2" id="guaranteeRow">
+                <div class="muted">Guaranteed featured on next 5★ (after losing 50/50)</div>
+                <div id="guaranteeText" class="bignum3">No</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-2 mb16">
+          <div class="card">
+            <h3 class="subttl">📦 Inventory</h3>
+            <div id="invEmpty" class="muted">Empty.</div>
+            <div id="inventory" class="inv-grid"></div>
+          </div>
+          <div class="card">
+            <h3 class="subttl">🕓 History</h3>
+            <div id="hisEmpty" class="muted">No pulls yet.</div>
+            <div id="history" class="history"></div>
+          </div>
+        </div>
+
+        <h1 style="color: black; text-align: center; margin-top: 50px;">ĐỔI THƯỞNG NÀAAAAAAAAAAAAAAAAAA</h1>
+        <h2 style="color: rgb(207, 63, 63); text-align: center; margin-top: 10px;">CÁI 4 SAO CHỈ ĐƯỢC CHỌN 1 TRONG 3 THUI NHÉ</h2>
+        <h4 style="color: rgb(207, 63, 63); text-align: center; margin-top: 10px;">HÀNG 3 SAO LÀ CỘNG TỔNG CỦA MUKI-FVCK-U1 2 3 NHÁ</h3>
+        <h5 style="color: rgb(207, 63, 63); text-align: center; margin-top: 10px;">NẾU GIẢ SỬ Q ROLL RA 2 HOẶC 3 LẦN 5 SAO THÌ CHỈ ĐỔI 1 CÁI THEO Ý Q THÔI NHÉ, BẢO QUẢN TÚI TIỀN P PHÁT ~.~ (sẽ ưu tiên Hatsune Miku trước nhé)</h5>
+        <table style="color: black; width: 100%; text-align: center; margin: 50px;">
+            <tr>
+                <th>Tên</th>
+                <th>Phần thưởng</th>
+            </tr>
+            <tr>
+                <td class="gacha-cell">
+                <div class="img-wrap">
+                    <img src="gachaimage/rate5saotrung.png" alt="Trúng 1">
+                    <span class="label">Trúng 1</span>
+                </div>
+                </td>
+                <td><strong>FULL BỘ BA: ROVER NAM, NỮ VÀ MUKI:3</strong></td>
+            </tr>
+            <tr>
+                <td class="gacha-cell">
+                <div class="img-wrap">
+                    <img src="gachaimage/rate5saolech.png" alt="Trúng 1">
+                    <span class="label">Trúng 1</span>
+                </div>
+                </td>
+                <td><img src="giftimage/Rovernam.png" alt="" style="width: 40%; height: 40%; border-radius: 25px;">BÔNG ROVER NAM</td>
+            </tr>
+            <tr>
+                <td class="gacha-cell">
+                <div class="img-wrap">
+                    <img src="gachaimage/rate5saolech2.png" alt="Trúng 1">
+                    <span class="label">Trúng 1</span>
+                </div>
+                </td>
+                <td><img src="giftimage/Rovernu.png" alt="" style="width: 40%; height: 40%; border-radius: 25px;">BÔNG ROVER NỮ</td>
+            </tr>
+            <tr>
+                <td class="gacha-cell">
+                <div class="img-wrap">
+                    <img src="gachaimage/rate5saolech3.png" alt="Trúng 1">
+                    <span class="label">Trúng 1</span>
+                </div>
+                </td>
+                <td>BÔNG MUKI HÔM 26/10 (QUYÊN CHỌN 2 NHÁ)</td>
+            </tr>
+            <tr>
+                <td class="gacha-cell">
+                <div class="img-wrap">
+                    <img src="gachaimage/rate4sao.png" alt="Trúng 1">
+                    <span class="label">Trúng 10</span>
+                </div>
+                </td>
+                <td><img src="giftimage/umbrellar.avif" alt="" style="width: 40%; height: 40%; border-radius: 25px;">PRE-ORDER</td>
+            </tr>
+            <tr>
+                <td class="gacha-cell">
+                <div class="img-wrap">
+                    <img src="gachaimage/rate4sao.png" alt="Trúng 1">
+                    <span class="label">Trúng 10</span>
+                </div>
+                </td>
+                <td><img src="giftimage/bathtub.webp" alt="" style="width: 40%; height: 40%; border-radius: 25px;">INSTOCK</td>
+            </tr>
+            <tr>
+                <td class="gacha-cell">
+                <div class="img-wrap">
+                    <img src="gachaimage/rate4sao.png" alt="Trúng 1">
+                    <span class="label">Trúng 10</span>
+                </div>
+                </td>
+                <td><img src="giftimage/Leehyper.avif" alt="" style="width: 40%; height: 40%; border-radius: 25px;">PRE-ORDER</td>
+            </tr>
+            <tr>
+                <td class="gacha-cell">
+                <div class="img-wrap">
+                    <img src="gachaimage/rate3sao.png" alt="Trúng 1">
+                    <span class="label" style="color: rgb(255, 0, 0);">Trúng 80</span>
+                </div>
+                </td>
+                <td>ĐỔI ĐƯỢC BÁNH NHÁ:3 (NHỚ LẦN TRƯỚC Q BẢO THÍCH ĂN BÁNH CHANH GÌ ĐẤY )</td>
+            </tr>
+        </table>
+
+        <a href="homepage.html">Back to homepage for nothing</a>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="ap.js" defer></script>
+
+</body>
+</html>

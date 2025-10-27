@@ -1,0 +1,136 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+.title {
+    font-family: 'Sankofa Display', cursive;
+    font-size: 96px;
+    text-align: center;
+    margin-top: 135px;
+}
+
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.hero {
+    width: 50%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    border: black 0.5px solid;
+}
+
+.artist {
+    font-family: 'WindSong', cursive;
+    font-size: 25px;
+    color: #555;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.sub-title {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 36px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.sub-passage {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    margin: 20px 15%;
+}
+
+.gift-option {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.gift-option img {
+    width: 50%;
+    cursor: pointer;
+}
+
+.final-title {
+    font-family: "WindSong", cursive;
+    font-size: 48px;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.gift-option img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+}
+
+.gacha-button {
+    display: block;
+    width: 200px;
+    margin: 40px auto;
+    padding: 15px 0;
+    background-color: #53aadf;
+    color: white;
+    text-align: center;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 24px;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gacha-button:hover {
+    background-color: #3678a3;
+    transition: background-color 0.3s;
+}
+
+.gacha-button:active {
+    transform: scale(0.95);
+    transition: transform 0.1s;
+}
+
+.corner-grid-wrap {
+  position: relative;
+  min-height: 100vh; /* min-h-screen */
+  width: 100%;
+  background: #fff;  /* bg-white */
+  overflow: hidden;   /* overflow-hidden */
+}
+
+.corner-grid-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none; /* không chắn click */
+  background-image:
+    linear-gradient(to right, #f0f0f0 1px, transparent 1px),
+    linear-gradient(to bottom, #f0f0f0 1px, transparent 1px),
+    radial-gradient(circle 600px at 0% 200px, #d5c5ff, transparent),
+    radial-gradient(circle 600px at 100% 200px, #d5c5ff, transparent);
+  background-size:
+    20px 20px,
+    20px 20px,
+    100% 100%,
+    100% 100%;
+  /* nếu muốn kéo theo cuộn: bỏ comment dòng dưới */
+  background-attachment: fixed, fixed, scroll, scroll;
+}
+
+.corner-grid-content {
+  position: relative;
+  z-index: 1; /* nội dung nổi trên nền */
+}
