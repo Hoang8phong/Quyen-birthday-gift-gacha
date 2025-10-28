@@ -1,6 +1,6 @@
 const STORAGE_KEY = "wuwa_gacha_pure_v6";
 const GEM_PER_ROLL = 160;
-const START_ROLLS = 160;
+const START_ROLLS = 500;
 const START_GEMS = START_ROLLS * GEM_PER_ROLL;
 const VIDEO_TIMEOUT_MS = 15000;
 
